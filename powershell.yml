@@ -1,0 +1,21 @@
+- hosts: all
+  tasks:
+  - name: Download Powershell deb
+    get_url:
+      url: "https://packages.microsoft.com/config/ubuntu/{{ ansible_distribution_version }}/packages-microsoft-prod.deb"
+      dest: /tmp/packages-microsoft-prod.deb
+    
+  - name: Install Powershell deb
+    apt:
+      deb: /tmp/packages-microsoft-prod.deb
+    become: yes
+  
+  - name: Update APT cache
+    apt: 
+      update_cache: yes
+    become: yes
+  
+  - name: Install Powershell packages
+    apt:
+      name: powershell
+    become: yes
