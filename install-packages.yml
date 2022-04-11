@@ -15,6 +15,7 @@
       pkg: 
       #- git
       - binutils
+      - sshpass
     become: yes
 
   - name: Download Powershell deb
